@@ -11,3 +11,8 @@ button to remove the selected cells.
 Note: Please, contact us if the endpoint doesn’t work.
 
 #### Design:
+
+<img src="Images/expected.png" width="800" height="600" >
+
+
+#### Result:
