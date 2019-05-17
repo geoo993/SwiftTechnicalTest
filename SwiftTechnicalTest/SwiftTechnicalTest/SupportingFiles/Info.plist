@@ -8,7 +8,7 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>mocky.io</key>
+			<key>domain.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>

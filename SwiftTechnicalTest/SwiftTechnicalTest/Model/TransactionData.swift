@@ -22,12 +22,10 @@ extension Currency {
         }
     }
 }
-
 struct Bank: Codable {
     let title : String
-    let imageURL : String
+    let imageUrl : String
 }
-
 struct TransactionData: Codable {
     let id: String
     let description : String
@@ -35,17 +33,26 @@ struct TransactionData: Codable {
     let currency : Currency
     let value : Double
     let bank : Bank
+    init(data: [String: Any]) {
+        self.id = data["id"] as! String
+        self.description = data["description"] as! String
+        self.category = data["category"] as! String
+        self.currency = data["currency"] as! Currency
+        self.value = data["value"] as! Double
+        let bankTitle = data["title"] as! String
+        let bankImageUrl = data["icon"] as! String
+        self.bank = Bank(title: bankTitle, imageUrl: bankImageUrl)
+    }
 }
-
 extension TransactionData: CustomStringConvertible {
     var summary: String {
         return
-            " title: \(id)" +
-            " description: \(description)" +
-            " category: \(category)" +
-            " currency: \(currency.rawValue)" +
-            " value: \(value)" +
-            " bank: \(bank.title)" +
-            " imageUrl: \(bank.imageURL)"
+            " id: \(id)\n" +
+            " description: \(description)\n" +
+            " category: \(category)\n" +
+            " currency: \(currency.rawValue)\n" +
+            " value: \(value.toCurrency)\n" +
+            " bank title: \(bank.title)\n" +
+            " imageUrl: \(bank.imageUrl)\n"
     }
 }

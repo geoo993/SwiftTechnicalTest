@@ -18,6 +18,7 @@
 		C752C572228E1B65001351A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C752C570228E1B65001351A1 /* LaunchScreen.storyboard */; };
 		C752C57D228E1B65001351A1 /* SwiftTechnicalTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C752C57C228E1B65001351A1 /* SwiftTechnicalTestTests.swift */; };
 		C752C588228E1B65001351A1 /* SwiftTechnicalTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C752C587228E1B65001351A1 /* SwiftTechnicalTestUITests.swift */; };
+		C7AA402C228E8EE70089B073 /* PersistencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA402B228E8EE70089B073 /* PersistencyManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		C752C583228E1B65001351A1 /* SwiftTechnicalTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftTechnicalTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C752C587228E1B65001351A1 /* SwiftTechnicalTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTechnicalTestUITests.swift; sourceTree = "<group>"; };
 		C752C589228E1B65001351A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7AA402B228E8EE70089B073 /* PersistencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistencyManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		C71F492C228E204F00944AE1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C7AA402B228E8EE70089B073 /* PersistencyManager.swift */,
 				C71F4930228E21CE00944AE1 /* TransactionAPI.swift */,
 			);
 			path = ViewModel;
@@ -314,6 +317,7 @@
 				C71F4931228E21CE00944AE1 /* TransactionAPI.swift in Sources */,
 				C752C56A228E1B64001351A1 /* TransactionsViewController.swift in Sources */,
 				C752C568228E1B64001351A1 /* AppDelegate.swift in Sources */,
+				C7AA402C228E8EE70089B073 /* PersistencyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Q93294747;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftTechnicalTest/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -507,7 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Q93294747;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftTechnicalTest/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

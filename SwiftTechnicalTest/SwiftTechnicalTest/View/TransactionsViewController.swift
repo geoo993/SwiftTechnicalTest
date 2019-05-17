@@ -10,30 +10,56 @@ import UIKit
 
 private enum Constants {
     static let cellIdentifier = "TransactionCell"
+    static let transactionDataRestorationKey = "transactionData"
 }
 
-class TransactionsViewController: UITableViewController {
+class TransactionsViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
-        self.isEditing = !self.isEditing
+        tableView.allowsSelection = !tableView.allowsSelection
+        selection(enabled: tableView.allowsSelection)
     }
     
+    private var removeButtonInitialHeight: CGFloat = 60
+    @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var removeButtonHeightConstraint: NSLayoutConstraint!
+    @IBAction func removeSelectedRows(_ sender: UIButton) {
+        removeCells()
+    }
+
     var transactionVM = [TransactionData]()
-    
     override func loadView() {
         super.loadView()
-        title = "Transactions"
+        removeButtonInitialHeight = removeButtonHeightConstraint.constant
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        // 1
-        transactionVM = TransactionAPI.shared.sampleTransactionData()
+        // 1 - navigation bar
+        self.navigationController?.title = "Transactions"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)
+        ]
         
+        // 2- disable selection of tableview
+        tableView.allowsSelection = false
+        
+        // 3- fetch transaction data
+        //transactionVM = TransactionAPI.shared.sampleTransactionData()
+        TransactionAPI.shared.fetchTransactionData { [weak self] transactionData in
+            guard let this = self else { return }
+            this.transactionVM = transactionData
+            this.tableView.reloadData()
+        }
+        
+       
+        // 4- update selected
+        selection(enabled: tableView.allowsSelection)
     }
 
- 
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
     }
@@ -45,77 +71,79 @@ class TransactionsViewController: UITableViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension TransactionsViewController {
+extension TransactionsViewController: UITableViewDataSource {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionVM.count
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell =
             tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as? TransactionsCell {
             if let transactionData = transactionVM.enumerated().first(where: { $0.offset == indexPath.row })?.element {
                 cell.setTranscationdata(with: transactionData)
+                //print(transactionData.summary)
             }
+            return cell
         }
         return UITableViewCell()
     }
 }
 
 // MARK: - UITableViewDelegate
-extension TransactionsViewController {
-    override public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if let transactionData = transactionVM.enumerated().first(where: { $0.offset == indexPath.row })?.element {
-                delete(data: transactionData)
-            }
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    //MARK: - update swipe model
+extension TransactionsViewController: UITableViewDelegate {
 
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let transactionData = transactionVM.enumerated().first(where: { $0.offset == indexPath.row })?.element {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //if let transactionData = transactionVM.enumerated().first(where: { $0.offset == indexPath.row })?.element {
+            //print(indexPath.row)
+        //}
     }
 }
 
 // MARK- Manage TransactionData
 extension TransactionsViewController {
     
-    // MARK: - Selected Transaction
-    func selected(data : TransactionData){
-  
-    }
-    
-    // MARK: - Update TodoItem in Realm DataBase
-    func update(todoItem item: TransactionData) {
-     
-    }
-    
-    // MARK: - Update Transaction
-    func delete(data item: TransactionData) {
-       
-    }
-
-    // MARK: - Move a Transaction to index
-    func move(data: TransactionData, to index: Int) {
-      
-    }
-
-    // MARK: - Delete all Transactions
-    func deleteAllTransactionData() {
+    // MARK: - Allow selection of tableview cells
+    func selection(enabled: Bool){
+        editButton.title = enabled ? "Done" : "Edit"
+        tableView.allowsMultipleSelection = enabled
+        tableView.allowsMultipleSelectionDuringEditing = enabled
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        if enabled {
+            if let app = UIApplication.shared.delegate as? AppDelegate,
+                let window = app.window {
+                removeButtonHeightConstraint.constant =
+                    removeButtonInitialHeight + window.safeAreaInsets.bottom
+            } else {
+                removeButtonHeightConstraint.constant = removeButtonInitialHeight
+            }
+        } else {
+            removeButtonHeightConstraint.constant = 0
+            deselectCells()
+        }
     }
-
+    
+    // MARK: - Uncheck the selected Transaction cells
+    func deselectCells() {
+        if let selectedIndexPaths = tableView.indexPathsForSelectedRows {
+            for indexPath in selectedIndexPaths {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
+    }
+    
+    // MARK: - Delete the selected Transaction cells
+    func removeCells() {
+        if let selectedIndexPaths = tableView.indexPathsForSelectedRows {
+            let indexes = selectedIndexPaths.map{ $0.row }
+            let filteredTransactions = transactionVM.enumerated().filter({ !indexes.contains($0.offset) }).map({ $0.element })
+            transactionVM = filteredTransactions
+        }
+        tableView.reloadData()
+    }
 }
 
 
