@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C71F4931228E21CE00944AE1 /* TransactionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F4930228E21CE00944AE1 /* TransactionAPI.swift */; };
+		C71F4933228E21EF00944AE1 /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F4932228E21EF00944AE1 /* TransactionData.swift */; };
+		C71F4935228E221200944AE1 /* TransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F4934228E221200944AE1 /* TransactionsCell.swift */; };
+		C71F4938228E302B00944AE1 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F4937228E302B00944AE1 /* Double+Ext.swift */; };
 		C752C568228E1B64001351A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C752C567228E1B64001351A1 /* AppDelegate.swift */; };
-		C752C56A228E1B64001351A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C752C569228E1B64001351A1 /* ViewController.swift */; };
+		C752C56A228E1B64001351A1 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C752C569228E1B64001351A1 /* TransactionsViewController.swift */; };
 		C752C56D228E1B64001351A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C752C56B228E1B64001351A1 /* Main.storyboard */; };
 		C752C56F228E1B65001351A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C752C56E228E1B65001351A1 /* Assets.xcassets */; };
 		C752C572228E1B65001351A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C752C570228E1B65001351A1 /* LaunchScreen.storyboard */; };
@@ -34,9 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C71F4930228E21CE00944AE1 /* TransactionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAPI.swift; sourceTree = "<group>"; };
+		C71F4932228E21EF00944AE1 /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
+		C71F4934228E221200944AE1 /* TransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsCell.swift; sourceTree = "<group>"; };
+		C71F4937228E302B00944AE1 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		C752C564228E1B64001351A1 /* SwiftTechnicalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTechnicalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C752C567228E1B64001351A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C752C569228E1B64001351A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C752C569228E1B64001351A1 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		C752C56C228E1B64001351A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C752C56E228E1B65001351A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C752C571228E1B65001351A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +82,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C71F492C228E204F00944AE1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C71F4930228E21CE00944AE1 /* TransactionAPI.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C71F492D228E205800944AE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C752C569228E1B64001351A1 /* TransactionsViewController.swift */,
+				C71F4934228E221200944AE1 /* TransactionsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C71F492E228E206100944AE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C71F4932228E21EF00944AE1 /* TransactionData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C71F492F228E206900944AE1 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C752C567228E1B64001351A1 /* AppDelegate.swift */,
+				C752C56B228E1B64001351A1 /* Main.storyboard */,
+				C752C56E228E1B65001351A1 /* Assets.xcassets */,
+				C752C570228E1B65001351A1 /* LaunchScreen.storyboard */,
+				C752C573228E1B65001351A1 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		C71F4936228E2FE600944AE1 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				C71F4937228E302B00944AE1 /* Double+Ext.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		C752C55B228E1B64001351A1 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +150,11 @@
 		C752C566228E1B64001351A1 /* SwiftTechnicalTest */ = {
 			isa = PBXGroup;
 			children = (
-				C752C567228E1B64001351A1 /* AppDelegate.swift */,
-				C752C569228E1B64001351A1 /* ViewController.swift */,
-				C752C56B228E1B64001351A1 /* Main.storyboard */,
-				C752C56E228E1B65001351A1 /* Assets.xcassets */,
-				C752C570228E1B65001351A1 /* LaunchScreen.storyboard */,
-				C752C573228E1B65001351A1 /* Info.plist */,
+				C71F492E228E206100944AE1 /* Model */,
+				C71F492D228E205800944AE1 /* View */,
+				C71F492C228E204F00944AE1 /* ViewModel */,
+				C71F492F228E206900944AE1 /* SupportingFiles */,
+				C71F4936228E2FE600944AE1 /* Extentions */,
 			);
 			path = SwiftTechnicalTest;
 			sourceTree = "<group>";
@@ -256,7 +308,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C752C56A228E1B64001351A1 /* ViewController.swift in Sources */,
+				C71F4935228E221200944AE1 /* TransactionsCell.swift in Sources */,
+				C71F4933228E21EF00944AE1 /* TransactionData.swift in Sources */,
+				C71F4938228E302B00944AE1 /* Double+Ext.swift in Sources */,
+				C71F4931228E21CE00944AE1 /* TransactionAPI.swift in Sources */,
+				C752C56A228E1B64001351A1 /* TransactionsViewController.swift in Sources */,
 				C752C568228E1B64001351A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,7 +489,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwiftTechnicalTest/Info.plist;
+				DEVELOPMENT_TEAM = 4Q93294747;
+				INFOPLIST_FILE = SwiftTechnicalTest/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +507,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwiftTechnicalTest/Info.plist;
+				DEVELOPMENT_TEAM = 4Q93294747;
+				INFOPLIST_FILE = SwiftTechnicalTest/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
