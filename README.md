@@ -16,3 +16,5 @@ Note: Please, contact us if the endpoint doesn’t work.
 
 
 #### Result:
+
+<img src="Images/result.png" width="800" height="600" >

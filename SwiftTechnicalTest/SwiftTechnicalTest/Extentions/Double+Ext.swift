@@ -9,10 +9,7 @@
 import UIKit
 
 public extension Double {
-    var toString: String {
-        return String(self)
-    }
-    var toCGFloat: CGFloat {
-        return CGFloat(self)
+    var toCurrency: String {
+        return String(format: "%.02f", self)
     }
 }
